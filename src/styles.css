@@ -142,3 +142,49 @@
     color: var(--color-foreground);
   }
 }
+
+/* ===== 新海高人 App 主题：深蓝 + 鎏金 + 宣纸米白 ===== */
+:root {
+  --radius: 1rem;
+  --background: oklch(0.985 0.006 85);
+  --foreground: oklch(0.28 0.045 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.28 0.045 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.28 0.045 260);
+  --primary: oklch(0.33 0.08 258);
+  --primary-foreground: oklch(0.98 0.008 85);
+  --secondary: oklch(0.955 0.014 85);
+  --secondary-foreground: oklch(0.33 0.08 258);
+  --muted: oklch(0.955 0.008 258);
+  --muted-foreground: oklch(0.55 0.03 258);
+  --accent: oklch(0.76 0.09 78);
+  --accent-foreground: oklch(0.28 0.05 60);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.98 0.008 85);
+  --border: oklch(0.91 0.012 260);
+  --input: oklch(0.91 0.012 260);
+  --ring: oklch(0.76 0.09 78);
+}
+
+@theme inline {
+  --font-serif: "Noto Serif SC", "Songti SC", serif;
+}
+
+@layer base {
+  body {
+    font-family: "Noto Sans SC", system-ui, -apple-system, "PingFang SC", sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+  h1, h2, h3, .font-serif {
+    font-family: "Noto Serif SC", "Songti SC", serif;
+  }
+}
+
+@utility safe-bottom {
+  padding-bottom: calc(env(safe-area-inset-bottom) + 0.5rem);
+}
+@utility safe-top {
+  padding-top: env(safe-area-inset-top);
+}
