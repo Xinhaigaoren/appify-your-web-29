@@ -10,33 +10,125 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EventsRouteImport } from './routes/events'
+import { Route as ForumRouteImport } from './routes/forum'
+import { Route as MeRouteImport } from './routes/me'
+import { Route as NewsRouteImport } from './routes/news'
+import { Route as EventsIdRouteImport } from './routes/events.$id'
+import { Route as ForumIdRouteImport } from './routes/forum.$id'
+import { Route as NewsSlugRouteImport } from './routes/news.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForumRoute = ForumRouteImport.update({
+  id: '/forum',
+  path: '/forum',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeRoute = MeRouteImport.update({
+  id: '/me',
+  path: '/me',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsIdRoute = EventsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => EventsRoute,
+} as any)
+const ForumIdRoute = ForumIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => ForumRoute,
+} as any)
+const NewsSlugRoute = NewsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => NewsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/events': typeof EventsRouteWithChildren
+  '/forum': typeof ForumRouteWithChildren
+  '/me': typeof MeRoute
+  '/news': typeof NewsRouteWithChildren
+  '/events/$id': typeof EventsIdRoute
+  '/forum/$id': typeof ForumIdRoute
+  '/news/$slug': typeof NewsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/events': typeof EventsRouteWithChildren
+  '/forum': typeof ForumRouteWithChildren
+  '/me': typeof MeRoute
+  '/news': typeof NewsRouteWithChildren
+  '/events/$id': typeof EventsIdRoute
+  '/forum/$id': typeof ForumIdRoute
+  '/news/$slug': typeof NewsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/events': typeof EventsRouteWithChildren
+  '/forum': typeof ForumRouteWithChildren
+  '/me': typeof MeRoute
+  '/news': typeof NewsRouteWithChildren
+  '/events/$id': typeof EventsIdRoute
+  '/forum/$id': typeof ForumIdRoute
+  '/news/$slug': typeof NewsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/events'
+    | '/forum'
+    | '/me'
+    | '/news'
+    | '/events/$id'
+    | '/forum/$id'
+    | '/news/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/events'
+    | '/forum'
+    | '/me'
+    | '/news'
+    | '/events/$id'
+    | '/forum/$id'
+    | '/news/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/events'
+    | '/forum'
+    | '/me'
+    | '/news'
+    | '/events/$id'
+    | '/forum/$id'
+    | '/news/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EventsRoute: typeof EventsRouteWithChildren
+  ForumRoute: typeof ForumRouteWithChildren
+  MeRoute: typeof MeRoute
+  NewsRoute: typeof NewsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +140,95 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forum': {
+      id: '/forum'
+      path: '/forum'
+      fullPath: '/forum'
+      preLoaderRoute: typeof ForumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/me': {
+      id: '/me'
+      path: '/me'
+      fullPath: '/me'
+      preLoaderRoute: typeof MeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/$id': {
+      id: '/events/$id'
+      path: '/$id'
+      fullPath: '/events/$id'
+      preLoaderRoute: typeof EventsIdRouteImport
+      parentRoute: typeof EventsRoute
+    }
+    '/forum/$id': {
+      id: '/forum/$id'
+      path: '/$id'
+      fullPath: '/forum/$id'
+      preLoaderRoute: typeof ForumIdRouteImport
+      parentRoute: typeof ForumRoute
+    }
+    '/news/$slug': {
+      id: '/news/$slug'
+      path: '/$slug'
+      fullPath: '/news/$slug'
+      preLoaderRoute: typeof NewsSlugRouteImport
+      parentRoute: typeof NewsRoute
+    }
   }
 }
 
+interface EventsRouteChildren {
+  EventsIdRoute: typeof EventsIdRoute
+}
+
+const EventsRouteChildren: EventsRouteChildren = {
+  EventsIdRoute: EventsIdRoute,
+}
+
+const EventsRouteWithChildren =
+  EventsRoute._addFileChildren(EventsRouteChildren)
+
+interface ForumRouteChildren {
+  ForumIdRoute: typeof ForumIdRoute
+}
+
+const ForumRouteChildren: ForumRouteChildren = {
+  ForumIdRoute: ForumIdRoute,
+}
+
+const ForumRouteWithChildren = ForumRoute._addFileChildren(ForumRouteChildren)
+
+interface NewsRouteChildren {
+  NewsSlugRoute: typeof NewsSlugRoute
+}
+
+const NewsRouteChildren: NewsRouteChildren = {
+  NewsSlugRoute: NewsSlugRoute,
+}
+
+const NewsRouteWithChildren = NewsRoute._addFileChildren(NewsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EventsRoute: EventsRouteWithChildren,
+  ForumRoute: ForumRouteWithChildren,
+  MeRoute: MeRoute,
+  NewsRoute: NewsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
