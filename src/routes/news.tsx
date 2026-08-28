@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
 import { AppShell, Empty, ErrorState, Loading } from "@/components/AppShell";
-import { fetchNews, formatDate } from "@/lib/api";
+import { fetchNews, formatDate, mediaUrl } from "@/lib/api";
 
 export const Route = createFileRoute("/news")({
   head: () => ({
@@ -58,7 +58,7 @@ function NewsPage() {
               className="flex gap-3 rounded-2xl border border-border bg-card p-3"
             >
               {item.cover_url ? (
-                <img src={item.cover_url} alt="" className="h-20 w-24 shrink-0 rounded-xl object-cover" />
+                <img src={mediaUrl(item.cover_url)} alt="" className="h-20 w-24 shrink-0 rounded-xl object-cover" />
               ) : null}
               <div className="min-w-0 flex-1">
                 <h2 className="line-clamp-2 font-serif text-sm font-semibold leading-snug">{item.title}</h2>

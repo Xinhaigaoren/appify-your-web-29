@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { CalendarDays, MapPin, ChevronRight, Users, BookOpen, Handshake } from "lucide-react";
 
 import { AppShell, Loading } from "@/components/AppShell";
-import { fetchEvents, fetchNews, formatDate } from "@/lib/api";
+import { fetchEvents, fetchNews, formatDate, mediaUrl } from "@/lib/api";
 import logo from "@/assets/haigao-logo.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -56,7 +56,7 @@ function Index() {
         </p>
       </section>
 
-      <section className="-mt-6 px-4">
+      <section className="relative z-10 -mt-6 px-4">
         <div className="grid grid-cols-4 gap-2 rounded-2xl border border-border bg-card p-3 shadow-sm">
           {QUICK.map((item) => (
             <Link key={item.to} to={item.to} className="flex flex-col items-center gap-2 py-2">
@@ -80,7 +80,7 @@ function Index() {
             className="flex gap-3 rounded-2xl border border-border bg-card p-3"
           >
             {item.cover_url ? (
-              <img src={item.cover_url} alt="" className="h-16 w-20 shrink-0 rounded-xl object-cover" />
+              <img src={mediaUrl(item.cover_url)} alt="" className="h-16 w-20 shrink-0 rounded-xl object-cover" />
             ) : null}
             <div className="min-w-0 flex-1">
               <h3 className="line-clamp-2 font-serif text-sm font-semibold leading-snug">{item.title}</h3>

@@ -4,7 +4,7 @@ import { CalendarDays, MapPin, Users } from "lucide-react";
 import { useState } from "react";
 
 import { AppShell, Empty, ErrorState, Loading } from "@/components/AppShell";
-import { fetchEvents, formatDateTime } from "@/lib/api";
+import { fetchEvents, formatDateTime, mediaUrl } from "@/lib/api";
 
 export const Route = createFileRoute("/events")({
   head: () => ({
@@ -59,7 +59,7 @@ function EventsPage() {
               className="block overflow-hidden rounded-2xl border border-border bg-card"
             >
               {item.cover_url ? (
-                <img src={item.cover_url} alt="" className="h-36 w-full object-cover" />
+                <img src={mediaUrl(item.cover_url)} alt="" className="h-36 w-full object-cover" />
               ) : null}
               <div className="p-4">
                 <div className="flex items-start justify-between gap-3">

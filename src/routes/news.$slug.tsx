@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ChevronLeft } from "lucide-react";
 
 import { AppShell, ErrorState, Loading } from "@/components/AppShell";
-import { fetchNewsDetail, formatDate } from "@/lib/api";
+import { fetchNewsDetail, formatDate, mediaUrl } from "@/lib/api";
 
 export const Route = createFileRoute("/news/$slug")({
   head: () => ({
@@ -44,7 +44,7 @@ function NewsDetail() {
             {article.author ? ` · ${article.author}` : ""}
           </p>
           {article.cover_url ? (
-            <img src={article.cover_url} alt="" className="mt-4 w-full rounded-2xl object-cover" />
+            <img src={mediaUrl(article.cover_url)} alt="" className="mt-4 w-full rounded-2xl object-cover" />
           ) : null}
           <div
             className="prose-sm mt-4 space-y-3 text-sm leading-7 text-foreground [&_img]:rounded-xl"

@@ -8,7 +8,7 @@ import { AppShell, ErrorState, Loading } from "@/components/AppShell";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { fetchEventDetail, formatDateTime, registerEvent } from "@/lib/api";
+import { fetchEventDetail, formatDateTime, mediaUrl, registerEvent } from "@/lib/api";
 
 export const Route = createFileRoute("/events/$id")({
   head: () => ({
@@ -58,7 +58,7 @@ function EventDetail() {
 
       {event ? (
         <div className="pb-8">
-          {event.cover_url ? <img src={event.cover_url} alt="" className="h-48 w-full object-cover" /> : null}
+          {event.cover_url ? <img src={mediaUrl(event.cover_url)} alt="" className="h-48 w-full object-cover" /> : null}
           <div className="px-4 py-5">
             <h1 className="font-serif text-xl font-bold leading-snug">{event.title}</h1>
             <div className="mt-3 space-y-1.5 rounded-2xl bg-secondary p-4 text-xs text-primary">

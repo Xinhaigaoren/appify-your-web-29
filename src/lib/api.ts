@@ -187,3 +187,9 @@ export function formatDateTime(value: string | null | undefined) {
   if (Number.isNaN(d.getTime())) return "";
   return `${formatDate(value)} ${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
 }
+
+export function mediaUrl(url: string | null | undefined) {
+  if (!url) return "";
+  if (/^https?:\/\//i.test(url)) return url;
+  return `${API_BASE_URL}${url.startsWith("/") ? "" : "/"}${url}`;
+}
