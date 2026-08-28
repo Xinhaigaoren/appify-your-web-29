@@ -23,7 +23,7 @@ function ForumPage() {
   const categories = useQuery({ queryKey: ["forum-cats"], queryFn: fetchForumCategories });
   const posts = useQuery({
     queryKey: ["forum-posts", categoryId],
-    queryFn: () => fetchForumPosts({ categoryId: categoryId || undefined }),
+    queryFn: () => fetchForumPosts(categoryId ? { categoryId } : {}),
   });
 
   return (
