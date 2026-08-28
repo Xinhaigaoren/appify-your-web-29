@@ -9,6 +9,8 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
+import { Toaster } from "@/components/ui/sonner";
+
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -77,11 +79,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "新海高人 · 海林市高级中学校友App" },
+      { name: "description", content: "海林市高级中学校友（新海高人）移动端：新闻公告、活动报名、校友论坛与个人档案。" },
+      { name: "author", content: "海林市高级中学校友会" },
+      { property: "og:title", content: "新海高人 · 海林市高级中学校友App" },
+      { property: "og:description", content: "新闻公告、活动报名、校友论坛与个人档案，一站连接母校与同窗。" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
@@ -91,7 +93,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "apple-touch-icon", href: "/favicon.png" },
+      { rel: "manifest", href: "/manifest.webmanifest" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -102,7 +111,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="zh-CN">
       <head>
         <HeadContent />
       </head>
@@ -121,6 +130,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <Toaster position="top-center" richColors />
     </QueryClientProvider>
   );
 }

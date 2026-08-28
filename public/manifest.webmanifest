@@ -1,0 +1,12 @@
+{
+  "name": "新海高人 · 海林市高级中学校友",
+  "short_name": "新海高人",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#183059",
+  "icons": [
+    { "src": "/favicon.png", "sizes": "64x64", "type": "image/png" },
+    { "src": "/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
