@@ -44,6 +44,7 @@ export function AppShell({
                 ) : null}
               </div>
             </div>
+            {action}
           </div>
         </header>
       ) : null}
