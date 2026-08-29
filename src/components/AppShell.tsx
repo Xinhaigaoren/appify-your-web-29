@@ -1,14 +1,13 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Home, Newspaper, CalendarDays, MessagesSquare, User } from "lucide-react";
+import { Home, MessagesSquare, Send, User } from "lucide-react";
 import type { ReactNode } from "react";
 
 import logo from "@/assets/haigao-logo.jpg.asset.json";
 
 const TABS = [
   { to: "/", label: "首页", icon: Home },
-  { to: "/news", label: "新闻", icon: Newspaper },
-  { to: "/events", label: "活动", icon: CalendarDays },
   { to: "/forum", label: "论坛", icon: MessagesSquare },
+  { to: "/chat", label: "私聊", icon: Send },
   { to: "/me", label: "我的", icon: User },
 ] as const;
 
@@ -51,7 +50,7 @@ export function AppShell({
 
       {hideNav ? null : (
         <nav className="safe-bottom fixed inset-x-0 bottom-0 z-40 mx-auto w-full max-w-[520px] border-t border-border bg-card/95 pt-1 backdrop-blur">
-          <ul className="grid grid-cols-5">
+          <ul className="grid grid-cols-4">
             {TABS.map((tab) => {
               const active = tab.to === "/" ? pathname === "/" : pathname.startsWith(tab.to);
               const Icon = tab.icon;
