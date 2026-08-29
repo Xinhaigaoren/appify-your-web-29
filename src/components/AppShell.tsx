@@ -1,14 +1,13 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Home, Newspaper, CalendarDays, MessagesSquare, User } from "lucide-react";
+import { Home, MessagesSquare, Send, User } from "lucide-react";
 import type { ReactNode } from "react";
 
 import logo from "@/assets/haigao-logo.jpg.asset.json";
 
 const TABS = [
   { to: "/", label: "首页", icon: Home },
-  { to: "/news", label: "新闻", icon: Newspaper },
-  { to: "/events", label: "活动", icon: CalendarDays },
   { to: "/forum", label: "论坛", icon: MessagesSquare },
+  { to: "/chat", label: "私聊", icon: Send },
   { to: "/me", label: "我的", icon: User },
 ] as const;
 
