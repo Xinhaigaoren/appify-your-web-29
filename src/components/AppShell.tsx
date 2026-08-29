@@ -16,11 +16,13 @@ export function AppShell({
   title,
   subtitle,
   hideNav,
+  action,
 }: {
   children: ReactNode;
   title?: string;
   subtitle?: string;
   hideNav?: boolean;
+  action?: ReactNode;
 }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
@@ -42,6 +44,7 @@ export function AppShell({
                 ) : null}
               </div>
             </div>
+            {action}
           </div>
         </header>
       ) : null}
