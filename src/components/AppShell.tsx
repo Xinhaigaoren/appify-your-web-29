@@ -50,7 +50,7 @@ export function AppShell({
 
       {hideNav ? null : (
         <nav className="safe-bottom fixed inset-x-0 bottom-0 z-40 mx-auto w-full max-w-[520px] border-t border-border bg-card/95 pt-1 backdrop-blur">
-          <ul className="grid grid-cols-5">
+          <ul className="grid grid-cols-4">
             {TABS.map((tab) => {
               const active = tab.to === "/" ? pathname === "/" : pathname.startsWith(tab.to);
               const Icon = tab.icon;
