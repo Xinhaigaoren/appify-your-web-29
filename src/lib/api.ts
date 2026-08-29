@@ -174,6 +174,64 @@ export const fetchMe = () =>
 export const registerEvent = (id: number, body: { name: string; phone: string; remark?: string }) =>
   api(`/api/events/${id}/register`, { method: "POST", body });
 
+/* ---------- 私聊 ---------- */
+
+export type Conversation = {
+  id: number;
+  peer_id: number;
+  peer_name: string | null;
+  last_message: string | null;
+  last_message_at: string | null;
+  unread_count: number;
+};
+
+export type ChatMessage = {
+  id: number;
+  conversation_id: number;
+  sender_id: number;
+  sender_name: string | null;
+  content: string;
+  is_read: boolean;
+  created_at: string | null;
+};
+
+export type DirectoryAlumni = {
+  user_id: number;
+  display_name: string | null;
+  graduation_year?: number | null;
+  class_name?: string | null;
+  company?: string | null;
+};
+
+export const fetchConversations = () =>
+  api<{ conversations: Conversation[] }>(`/api/messages/conversations`, { auth: true });
+
+export const fetchConversation = (id: number) =>
+  api<{ messages: ChatMessage[]; peer_id: number; peer_name: string; conversation_id: number }>(
+    `/api/messages/conversations/${id}`,
+    { auth: true },
+  );
+
+export const sendChatMessage = (id: number, content: string) =>
+  api<{ message: ChatMessage }>(`/api/messages/conversations/${id}`, {
+    method: "POST",
+    body: { content },
+    auth: true,
+  });
+
+export const createConversation = (peerId: number) =>
+  api<{ conversation: { id: number } }>(`/api/messages/conversations`, {
+    method: "POST",
+    body: { peer_id: peerId },
+    auth: true,
+  });
+
+export const fetchDirectory = () =>
+  api<{ items?: DirectoryAlumni[]; directory?: DirectoryAlumni[] }>(`/api/alumni/directory`, { auth: true });
+
+export const fetchUnreadCount = () =>
+  api<{ count: number }>(`/api/messages/unread-count`, { auth: true });
+
 export function formatDate(value: string | null | undefined) {
   if (!value) return "";
   const d = new Date(value);
